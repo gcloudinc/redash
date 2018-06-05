@@ -1,5 +1,7 @@
 #!/bin/bash
 
+chmod ugo+w -R /tmp
+
 . /tmp/.env
 
 cat > /opt/redash/.env <<EOF
@@ -15,7 +17,7 @@ export REDASH_MAIL_USE_SSL="${SMTP_SSL}"
 export REDASH_MAIL_USERNAME="${SMTP_USER}"
 export REDASH_MAIL_PASSWORD="${SMTP_PASSWD}"
 export REDASH_MAIL_DEFAULT_SENDER="${SMTP_SENDER}"
-export REDASH_HOST="http://${WEB_HOST}"
+export REDASH_HOST="${FRONT_URL}"
 export REDASH_ALLOW_SCRIPTS_IN_USER_INPUT="true"
 EOF
 

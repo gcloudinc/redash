@@ -1,11 +1,7 @@
 {
   "AWSEBDockerrunVersion": "1",
-  "Authentication": {
-      "Bucket": "gcloudinc",
-      "Key": "docker/dockercfg"
-  },
   "Image" : {
-      "Name" : "gcloud/redash:0.1",
+      "Name" : "gcloud/redash:0.2",
       "Update": "true"
   },
   "Ports": [

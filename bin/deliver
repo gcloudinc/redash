@@ -1,0 +1,11 @@
+ROOT_DIR=$(cd $(dirname $0)/..;pwd)
+SITE=$1 # gcloudなど
+
+mv $ROOT_DIR/.env $ROOT_DIR/.env.back
+cp $ROOT_DIR/.env.production-$SITE $ROOT_DIR/.env
+cp $ROOT_DIR/.ebextensions/00_setup_security_group.config-$SITE $ROOT_DIR/.ebextensions/00_setup_security_group.config
+cp $ROOT_DIR/.ebextensions/20_setup_https.config-$SITE $ROOT_DIR/.ebextensions/20_setup_https.config
+ZIP_FILE=tmp/redash_deliver_production-$SITE-`date "+%Y%m%d-%H%M"`.zip
+zip -r $ZIP_FILE . -x .'git/*' '.env.*' .gitignore .dockerignore Dockerfile 'docker/*' 'tmp/*' 'bin/*' '.ebextensions/00_setup_security_group.config.*' '.ebextensions/20_setup_https.config.*'
+mv $ROOT_DIR/.env.back $ROOT_DIR/.env
+echo created archive: `pwd`/$ZIP_FILE

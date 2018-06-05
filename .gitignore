@@ -4,7 +4,14 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile '~/.gitignore_global'
 
-/bin/*
-/.env
-/.env.*
+/.env*
+!/.env.sample
 *~
+/tmp/*
+
+
+# ebextensions
+.ebextensions/00_setup_security_group.config*
+!.ebextensions/00_setup_security_group.config.sample
+.ebextensions/20_setup_https.config*
+!.ebextensions/20_setup_https.config.sample
