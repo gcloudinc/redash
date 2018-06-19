@@ -4,6 +4,11 @@ chmod ugo+w -R /tmp
 
 . /tmp/.env
 
+if test -n "$ALLOW_ONLY_IOS_KEY"; then
+  patch -d / -p 0 < /root/add_nginx_auth_ios.patch
+  sed -i s/__%ALLOW_ONLY_IOS_KEY%__/$ALLOW_ONLY_IOS_KEY/ /etc/nginx/sites-available/redash
+fi
+
 cat > /opt/redash/.env <<EOF
 export REDASH_STATIC_ASSETS_PATH="../client/dist/"
 export REDASH_LOG_LEVEL="INFO"

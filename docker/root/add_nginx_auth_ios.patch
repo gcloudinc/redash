@@ -1,0 +1,24 @@
+--- /etc/nginx/sites-available/redash.back	2018-06-19 19:28:18.010501360 +0000
++++ /etc/nginx/sites-available/redash	2018-06-19 19:11:18.914425598 +0000
+@@ -14,7 +14,21 @@
+   gzip_types *;
+   gzip_proxied any;
+ 
++  location = /ping {
++    if ($http_user_agent !~ ELB-HealthChecker) {
++      return 404;
++    }
++    proxy_set_header Host $http_host;
++    proxy_set_header X-Real-IP $remote_addr;
++    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
++    proxy_set_header X-Forwarded-Proto $scheme;
++    proxy_pass       http://rd_servers;
++  }
++
+   location / {
++    if ($http_user_agent !~ __%ALLOW_ONLY_IOS_KEY%__) {
++      return 404;
++    }
+     proxy_set_header Host $http_host;
+     proxy_set_header X-Real-IP $remote_addr;
+     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
