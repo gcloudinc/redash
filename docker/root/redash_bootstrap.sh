@@ -11,19 +11,11 @@ set -eu
 
 REDASH_BASE_PATH=/opt/redash
 REDASH_BRANCH="${REDASH_BRANCH:-master}" # Default branch/version to master if not specified in REDASH_BRANCH env var
-REDASH_VERSION=${REDASH_VERSION-3.0.0.b3134} # Install latest version if not specified in REDASH_VERSION env var
+REDASH_VERSION=${REDASH_VERSION-4.0.1.b4038} # Install latest version if not specified in REDASH_VERSION env var
 LATEST_URL="https://s3.amazonaws.com/redash-releases/redash.${REDASH_VERSION}.tar.gz"
 VERSION_DIR="$REDASH_BASE_PATH/redash.${REDASH_VERSION}"
 REDASH_TARBALL=/tmp/redash.tar.gz
 FILES_BASE_URL=https://raw.githubusercontent.com/getredash/redash/${REDASH_BRANCH}/setup/ubuntu/files
-
-echo $REDASH_BASE_PATH
-echo $REDASH_BRANCH
-echo $REDASH_VERSION
-echo $LATEST_URL
-echo $VERSION_DIR
-echo $REDASH_TARBALL
-echo $FILES_BASE_URL
 
 cd /tmp/
 
@@ -79,7 +71,7 @@ extract_redash_sources() {
 }
 
 install_python_packages() {
-    pip install --upgrade pip
+    pip install --upgrade pip==9.0.3
     # TODO: venv?
     pip install setproctitle # setproctitle is used by Celery for "pretty" process titles
     pip install -r $REDASH_BASE_PATH/current/requirements.txt
