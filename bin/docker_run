@@ -14,4 +14,4 @@ if [ $? -eq 0 ]; then
   echo "restart container"
   docker rm -f redash
 fi
-docker run -d --name redash -p $PORT:80 -v $ROOT_DIR/.env:/tmp/.env gcloud/redash:0.4
+docker run -d --name redash -p $PORT:80 -v $ROOT_DIR/.env:/tmp/.env gcloud/redash:0.5
