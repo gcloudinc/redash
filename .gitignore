@@ -15,3 +15,4 @@
 !.ebextensions/00_setup_security_group.config.sample
 .ebextensions/20_setup_https.config*
 !.ebextensions/20_setup_https.config.sample
+report.sql
