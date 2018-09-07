@@ -1,3 +1,7 @@
+packages:
+  yum:
+    patch: []
+
 files:
   /etc/nginx/conf.d/ssl.conf:
     mode: "000755"
@@ -58,13 +62,7 @@ files:
       sample
       -----END RSA PRIVATE KEY-----
 
-
-packages:
-  yum:
-    patch: []
-
-files:
-  /root/nginx-redash-ssl.patch :
+  /root/nginx-redash-ssl.patch:
     mode: "000644"
     owner: root
     group: root
