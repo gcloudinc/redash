@@ -1,0 +1,1 @@
+59 23 * * * root /tmp/bin/update_redash_default_date_range

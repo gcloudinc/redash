@@ -1,0 +1,10 @@
+if test -e /tmp/report.sql; then
+  START_DATE=`/bin/date -d '1 months ago next day' '+%Y-%m-%d'`
+  END_DATE=`/bin/date -d 'next day' '+%Y-%m-%d'`
+  
+  /bin/sed -i 's/{"global": true, "type": "date", "name": "\\u958b\\u59cb\\u65e5\\u4ed8", "value": "[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]", "title": "\\u958b\\u59cb\\u65e5\\u4ed8"}/{"global": true, "type": "date", "name": "\\u958b\\u59cb\\u65e5\\u4ed8", "value": "'${START_DATE}'", "title": "\\u958b\\u59cb\\u65e5\\u4ed8"}/' /tmp/report.sql
+  /bin/sed -i 's/{"global": true, "type": "date", "name": "\\u7d42\\u4e86\\u65e5\\u4ed8", "value": "[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]", "title": "\\u7d42\\u4e86\\u65e5\\u4ed8"}/{"global": true, "type": "date", "name": "\\u7d42\\u4e86\\u65e5\\u4ed8", "value": "'${END_DATE}'", "title": "\\u7d42\\u4e86\\u65e5\\u4ed8"}/' /tmp/report.sql
+  . /tmp/.env
+  export PGPASSWORD="${DB_PASSWD}"
+  /bin/cat /tmp/report.sql | /usr/bin/psql -h ${DB_HOST} -U ${DB_USER} -p ${DB_PORT} ${DB_NAME}
+fi
