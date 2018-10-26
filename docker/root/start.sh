@@ -1,6 +1,7 @@
 #!/bin/bash
 
 chmod ugo+w -R /tmp
+chmod 755 /tmp/bin/update_redash_default_date_range
 
 . /tmp/.env
 

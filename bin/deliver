@@ -12,6 +12,6 @@ if test -n "$2"; then
   cp $2 report.sql
 fi
 ZIP_FILE=tmp/redash_deliver_production-$SITE-`date "+%Y%m%d-%H%M"`.zip
-zip -r $ZIP_FILE . -x .'git/*' '.env.*' .gitignore .dockerignore Dockerfile 'docker/*' 'tmp/*' 'bin/*' '.ebextensions/00_setup_security_group.config.*' '.ebextensions/20_setup_https.config.*'
+zip -r $ZIP_FILE . -x .'git/*' '.env.*' .gitignore .dockerignore Dockerfile 'docker/*' 'tmp/*' '.ebextensions/*.config.*' '.ebextensions/*.config-*' '*~'
 mv $ROOT_DIR/.env.back $ROOT_DIR/.env
 echo created archive: `pwd`/$ZIP_FILE
