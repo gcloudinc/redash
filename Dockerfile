@@ -36,7 +36,7 @@ ENV LC_CTYPE ja_JP.UTF-8
 
 ADD docker /root/misc
 RUN cp -a /root/misc/* /
-
+RUN chmod 644 /etc/cron.d/redash
 
 EXPOSE 80
 CMD /bin/bash /root/start.sh
